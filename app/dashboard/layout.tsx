@@ -43,7 +43,7 @@ export default function DashboardLayout({
               </Avatar>
               <div className="Capitalize text-xl font-black text-zinc-700">
                 {" "}
-                Sr Fruits Inventory
+                S.R Farm Manager
               </div>
             </div>
             <div className="border-2 border-black rounded-sm cursor-pointer">
@@ -60,7 +60,7 @@ export default function DashboardLayout({
                       <AvatarFallback>CN</AvatarFallback>
                     </Avatar>
                     <SheetTitle className="Capitalize text-lg font-black text-zinc-700">
-                      Sr Fruits Inventory
+                      S.R Farm Manager
                     </SheetTitle>
                   </SheetHeader>
                   <div className="flex flex-col justify-center gap-4 py-4">
