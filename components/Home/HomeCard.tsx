@@ -31,9 +31,6 @@ const HomeCard = ({ imageUrl, title, quantity }: ImageCardProps) => {
         <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
           {title}
         </h5>
-
-        <p className="my-4">Quantity : {quantity} Kgs</p>
-
         <a
           href="#"
           className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-slate-900 rounded-lg hover:bg-slate-800 focus:ring-4 focus:outline-none focus:ring-slate-300 dark:bg-slate-600 dark:hover:bg-slate-700 dark:focus:ring-slate-800"

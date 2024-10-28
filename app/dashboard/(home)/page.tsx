@@ -7,6 +7,7 @@ import React from "react";
 import FirebaseConfig from "@/firebase/firbaseConfig";
 import { useState, useEffect } from "react";
 import { ref, onValue } from "firebase/database";
+import Loader from "@/components/Loader";
 
 type InventoryItem = {
   image: string;
@@ -18,7 +19,7 @@ type Inventory = Record<string, InventoryItem>;
 
 const useInventory = (): Inventory | null => {
     const [inventory, setInventory] = useState<Inventory | null>(null);
-    const db = FirebaseConfig();
+    const {db} = FirebaseConfig();
   
     useEffect(() => {
       const inventoryRef = ref(db, "inventory");
@@ -34,7 +35,11 @@ const useInventory = (): Inventory | null => {
 const HomePage = () => {
   const inventory = useInventory();
   console.log(inventory)
-  if (!inventory) return <p>Loading...</p>;
+  if (!inventory) return (
+    <div className="h-screen w-full flex justify-center items-center">
+    <Loader />
+    </div>
+  );
 
   return (
     <div>

@@ -1,20 +1,25 @@
-// Import the functions you need from the SDKs you need
+// firebaseConfig.ts
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
+import { getAuth } from "firebase/auth";
+
 
 function FirebaseConfig() {
   const firebaseConfig = {
-    apiKey: "AIzaSyDFNMtKmG4L6CbE2SErXDH-R13Gt0zJyxc",
-    authDomain: "fruity-5a62f.firebaseapp.com",
-    databaseURL: "https://fruity-5a62f-default-rtdb.firebaseio.com",
-    projectId: "fruity-5a62f",
-    storageBucket: "fruity-5a62f.appspot.com",
-    messagingSenderId: "866361968103",
-    appId: "1:866361968103:web:672c6edf2b8ff5d5552942",
-    measurementId: "G-94WFBTP43N",
+    apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+    authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+    databaseURL: process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL,
+    projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_USER_ID,
+    appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+    measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
   };
 
+  // Initialize Firebase
   const app = initializeApp(firebaseConfig);
-  return getDatabase(app);
+  const auth = getAuth(app)
+  return {db:getDatabase(app), auth};
+
 }
 export default FirebaseConfig;
