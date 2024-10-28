@@ -1,6 +1,6 @@
 "use client";
 import { Plus, Search } from "lucide-react";
-import React, { useState } from "react";
+import React, { useState ,ChangeEventHandler}  from "react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -16,13 +16,17 @@ import { Label } from "@/components/ui/label";
 import ImageUpload from "./ImageUpload";
 import FirebaseConfig from "@/firebase/firbaseConfig";
 import { set, ref } from "firebase/database";
+import useSearch from "@/lib/Store/SearchStore";
 
 const SearchButton = () => {
   const { db } = FirebaseConfig();
   const [logo, setLogo] = useState("");
   const [name, setName] = useState("");
-  const [quantity, setQuantity] = useState("");
+  const {setSearch} = useSearch();
   const [isDialogOpen, setIsDialogOpen] = useState(false); // Dialog state
+  const handleChange: ChangeEventHandler<HTMLInputElement> = (e) =>{
+      setSearch(e.target.value);
+  }
   const handleSubmit = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
@@ -55,6 +59,7 @@ const SearchButton = () => {
             className="input shadow-lg focus:border-2 border-gray-300 px-5 py-3 rounded-xl w-56 transition-all focus:w-64 outline-none"
             name="search"
             type="search"
+            onChange={handleChange}
           />
           <svg
             className="size-6 absolute top-3 right-3 text-gray-500"

@@ -8,10 +8,9 @@ import { useRouter } from "next/navigation";
 interface ImageCardProps {
   imageUrl: string;
   title: string;
-  quantity: string;
 }
 
-const HomeCard = ({ imageUrl, title, quantity }: ImageCardProps) => {
+const HomeCard = ({ imageUrl, title }: ImageCardProps) => {
   const router = useRouter();
   const { name, setName } = useName();
 

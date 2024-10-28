@@ -1,3 +1,4 @@
+'use client'
 import SearchButton from "@/components/SearchButton";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -13,15 +14,23 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { signOutUser } from "@/firebase/authHelpers";
 
 import { AlignJustify } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function DashboardLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const router = useRouter()
+
+  const handleLogOut = async ()=>{
+    await signOutUser();
+    router.push('/');
+  }
   return (
     <html lang="en">
       <body>
@@ -55,15 +64,12 @@ export default function DashboardLayout({
                     </SheetTitle>
                   </SheetHeader>
                   <div className="flex flex-col justify-center gap-4 py-4">
-                    <Link href='/hamza' className="cursor-pointer font-semibold text-zinc-600 border rounded-lg p-4 shadow-sm hover:bg-slate-100 transition-all duration-500">
-                        Add a fruit
-                    </Link>
-                    <Link href='/' className="cursor-pointer font-semibold text-zinc-600 border rounded-lg p-4 shadow-sm hover:bg-slate-100 transition-all duration-500">
-                        Delete a fruit
-                    </Link>
-                    <Link href='/' className="cursor-pointer font-semibold text-zinc-600 border rounded-lg p-4 shadow-sm hover:bg-slate-100 transition-all duration-500">
-                       Settings
-                    </Link>
+                    {/* <Link href='/hamza' className="cursor-pointer font-semibold text-zinc-600 border rounded-lg p-4 shadow-sm hover:bg-slate-100 transition-all duration-500">
+                        Overview
+                    </Link> */}
+                    <div  className="cursor-pointer font-semibold text-zinc-600 border rounded-lg p-4 shadow-sm hover:bg-slate-100 transition-all duration-500" onClick={handleLogOut}>
+                        Logout
+                    </div>
                   </div>
                 </SheetContent>
               </Sheet>

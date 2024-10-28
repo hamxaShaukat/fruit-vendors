@@ -60,7 +60,7 @@ const DisplayTable = () => {
   if (shipments.length === 0)
     return (
       <div className="flex items-center justify-center h-screen w-full text-2xl text-slate-600 uppercase font-bold">
-        No items found kindly add one
+        No shipments of {name} found kindly add one
       </div>
     );
 
