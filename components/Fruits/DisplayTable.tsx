@@ -23,10 +23,13 @@ const DisplayTable = () => {
       onValue(transactionsRef, (snapshot) => {
         const data = snapshot.val();
         if (data) {
-          const transactionsArray = Object.entries(data).map(([key, value]) => ({
-            id: key,
-            ...(value as Transaction),
-          }));
+          const transactionsArray = Object.entries(data).map(([key, value]) => {
+            const { id: _id, ...transactionData } = value as Transaction; // Destructure id out of value if it exists
+            return {
+              id: key, // Use key as id
+              ...transactionData, // Spread the remaining properties of value
+            };
+          });
           setTransactions(transactionsArray);
         } else {
           setTransactions([]);
@@ -36,6 +39,7 @@ const DisplayTable = () => {
   
     return transactions;
   };
+  
   
   // Call `useFruitTransactions` without conditionally rendering
   const shipments = useFruitTransactions();
