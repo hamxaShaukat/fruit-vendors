@@ -31,8 +31,8 @@ export default function AuthForm() {
         <div className="absolute inset-0 bg-gradient-to-r from-red-400 to-orange-500 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 rounded-2xl sm:rounded-3xl"></div>
         <div className="relative px-6 py-8 bg-white shadow-lg rounded-2xl sm:rounded-3xl">
           <div className="text-center">
-            <h1 className="text-xl sm:text-2xl font-semibold">
-              {user ? "Welcome to S.R Inventory" : "Sign In to S.R Inventory"}
+            <h1 className="text-xl sm:text-2xl font-semibold capitalize bg-gradient-to-r from-red-600 to-orange-500 bg-clip-text text-transparent">
+            Sign in to S.R farm manager
             </h1>
           </div>
           {error && <p className="text-red-500 text-sm mt-2">{error}</p>}

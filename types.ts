@@ -5,3 +5,13 @@ type InventoryItem = {
     unitPrice?: number; // Optional, if you have this field
   };
   
+  type Transaction = {
+    id: string;
+    date: string;
+    shell: string;
+    unitPrice: string;
+    wage: string;
+    labours: string;
+    expenses: string;
+    carExpenses: string;
+  };

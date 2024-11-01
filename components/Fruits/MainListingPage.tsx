@@ -38,7 +38,7 @@ const MainListingPage = () => {
   const [wage, setWage] = useState("");
   const [labours, setLabours] = useState("");
   const [expenses, setExpenses] = useState("");
-
+  const [carExpenses, setCarExpenses] = useState("");
 
   
   const { name } = useName();
@@ -60,6 +60,7 @@ const MainListingPage = () => {
         wage:wage,
         labours:labours,
         expenses: expenses,
+        carExpenses: carExpenses,
       });
       alert("Item saved successfully!"); // Optionally show a success message
       setIsDialogOpen(false); // Close the dialog upon success
@@ -160,9 +161,20 @@ const MainListingPage = () => {
                 </Label>
                 <Input
                   id="wages"
-                  placeholder="Enter Wage per labour..."
+                  placeholder="Enter Wages of all labours..."
                   className="col-span-3"
                   onChange={(e) => setWage(e.target.value)}
+                />
+              </div>
+              <div className="grid grid-cols-4 items-center gap-4">
+                <Label htmlFor="car-expenses" className="text-right">
+                  Car Expenses
+                </Label>
+                <Input
+                  id="car-expenses"
+                  placeholder="enter car expenses..."
+                  className="col-span-3"
+                  onChange={(e) => setCarExpenses(e.target.value)}
                 />
               </div>
               <div className="grid grid-cols-4 items-center gap-4">

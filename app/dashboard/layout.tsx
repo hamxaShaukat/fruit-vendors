@@ -40,7 +40,7 @@ export default function DashboardLayout({
                 <AvatarImage src="/assets/guava.png" />
                 <AvatarFallback>CN</AvatarFallback>
               </Avatar>
-              <div className="Capitalize text-xl font-black text-zinc-700">
+              <div className="Capitalize text-xl font-black bg-gradient-to-r from-red-600 to-orange-500 bg-clip-text text-transparent">
                 {" "}
                 S.R Farm Manager
               </div>
@@ -58,7 +58,7 @@ export default function DashboardLayout({
                       <AvatarImage src="/assets/guava.png" />
                       <AvatarFallback>CN</AvatarFallback>
                     </Avatar>
-                    <SheetTitle className="Capitalize text-lg font-black text-zinc-700">
+                    <SheetTitle className="Capitalize text-lg font-black bg-gradient-to-r from-red-600 to-orange-500 bg-clip-text text-transparent">
                       S.R Farm Manager
                     </SheetTitle>
                   </SheetHeader>

@@ -8,8 +8,8 @@ import Loader from "@/components/Loader";
 import useSearch from "@/lib/Store/SearchStore";
 
 type InventoryItem = {
+  Name:string,
   image: string;
-  unitPrice?: number;
 };
 
 type Inventory = Record<string, InventoryItem>;
@@ -42,7 +42,7 @@ const HomePage = () => {
         itemName.toLowerCase().includes(search.toLowerCase())
       )
     : Object.entries(inventory || {});
-
+      console.log(filteredInventory)
   if (loading) {
     return (
       <div className="h-screen w-full flex justify-center items-center">
@@ -62,7 +62,7 @@ const HomePage = () => {
         {filteredInventory.map(([itemName, itemDetails]) => (
           <HomeCard
             key={itemName}
-            title={itemName}
+            title={itemDetails.Name}
             imageUrl={itemDetails.image}
           />
         ))}
