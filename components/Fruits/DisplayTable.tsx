@@ -93,6 +93,9 @@ const DisplayTable = () => {
           wage={shipment.wage}
           labours={shipment.labours}
           carExpenses={shipment.carExpenses}
+          description={shipment.description}
+          priceShunt={shipment.priceShunt}
+          shants={shipment.shants}
           onDelete={() => handleDeleteTransaction(shipment.id)}
           onEdit={() => console.log("shipme")}
         />

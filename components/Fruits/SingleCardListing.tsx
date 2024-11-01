@@ -37,6 +37,9 @@ interface SingleCardListingProps {
   labours: string;
   expenses: string;
   carExpenses: string;
+  priceShunt: string;
+  shants: string;
+  description: string;
   onDelete: (id: string) => void;
   onEdit: (id: string, updatedData: Partial<Transaction>) => void;
 }
@@ -50,6 +53,9 @@ export default function SingleCardListing({
   labours,
   expenses,
   carExpenses,
+  priceShunt,
+  shants,
+  description,
   onDelete,
   onEdit,
 }: SingleCardListingProps) {
@@ -59,51 +65,32 @@ export default function SingleCardListing({
   const totalLabours = parseInt(labours);
   const totalExpenses = parseInt(expenses);
   const totalCarExpenses = parseInt(carExpenses);
+  const totalShants = parseInt(shants);
+  const totalPriceShunt = parseInt(priceShunt);
+
   const [isOpen, setIsOpen] = useState(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [itemDate, setitemDate] = React.useState<Date>();
 
   const totalProfit = useMemo(() => {
     return (
-      totalShells * totalPrice -
-      totalLabours * totalWage -
+      totalShells * totalPrice +
+      totalShants * totalPriceShunt -
+      totalWage -
       totalExpenses -
       totalCarExpenses
     );
   }, [
     totalShells,
     totalPrice,
-    totalLabours,
     totalWage,
     totalExpenses,
     totalCarExpenses,
+    totalShants,
+    totalPriceShunt,
   ]);
 
   const isProfit = totalProfit > 0;
-
-
-  const [editedData, setEditedData] = useState({
-    date: date,
-    shell: shell,
-    price: price,
-    wage: wage,
-    labours: labours,
-    expenses: expenses,
-    carExpenses: carExpenses,
-  });
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setEditedData((prevData) => ({ ...prevData, [name]: value }));
-  };
-  const handleEditSubmit = () => {
-    // Filter out unchanged fields
-    const dataToUpdate = Object.fromEntries(
-      Object.entries(editedData).filter(([key, value]) => value !== "")
-    );
-    onEdit(id, dataToUpdate); // Call the onEdit function with filtered data
-    setIsDialogOpen(false); // Close the dialog after submitting
-  };
 
   const DataRow = ({
     label,
@@ -136,21 +123,21 @@ export default function SingleCardListing({
     >
       <CardHeader className="pb-2 flex flex-col justify-between items-start gap-y-2">
         <div className="flex w-full gap-2">
-        <Button
-                className="w-1/2"
-                variant="outline"
-                size="icon"
-                aria-label="Delete"
-              >
-                <Pencil
-                  className={cn(
-                    "h-4 w-4",
-                    isProfit
-                      ? "text-green-600 dark:text-green-400"
-                      : "text-red-600 dark:text-red-400"
-                  )}
-                />
-              </Button>
+          <Button
+            className="w-1/2"
+            variant="outline"
+            size="icon"
+            aria-label="Delete"
+          >
+            <Pencil
+              className={cn(
+                "h-4 w-4",
+                isProfit
+                  ? "text-green-600 dark:text-green-400"
+                  : "text-red-600 dark:text-red-400"
+              )}
+            />
+          </Button>
           <Dialog open={isOpen} onOpenChange={setIsOpen}>
             <DialogTrigger asChild>
               <Button
@@ -243,6 +230,17 @@ export default function SingleCardListing({
             >
               Expenses
             </TabsTrigger>
+            <TabsTrigger
+              value="description"
+              className={cn(
+                "w-1/2",
+                isProfit
+                  ? "data-[state=active]:bg-green-200 dark:data-[state=active]:bg-green-700"
+                  : "data-[state=active]:bg-red-200 dark:data-[state=active]:bg-red-700"
+              )}
+            >
+              Description
+            </TabsTrigger>
           </TabsList>
           <TabsContent value="shells">
             <DataRow label="Number of shells" value={totalShells} />
@@ -250,6 +248,15 @@ export default function SingleCardListing({
             <DataRow
               label="Total Revenue"
               value={`Rs ${totalShells * totalPrice}`}
+            />
+            <DataRow label="Number of shells(shant)" value={totalShants} />
+            <DataRow
+              label="Price per shell(shant)"
+              value={`Rs ${totalPriceShunt}`}
+            />
+            <DataRow
+              label="Total Revenue(shant)"
+              value={`Rs ${totalShants * totalPriceShunt}`}
             />
           </TabsContent>
           <TabsContent value="expenses">
@@ -260,9 +267,12 @@ export default function SingleCardListing({
             <DataRow
               label="Total Expenses"
               value={`Rs ${
-                totalExpenses + totalWage * totalLabours + totalCarExpenses
+                totalExpenses + totalWage + totalCarExpenses
               }`}
             />
+          </TabsContent>
+          <TabsContent value="description">
+                {description}
           </TabsContent>
         </Tabs>
       </CardContent>

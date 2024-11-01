@@ -14,4 +14,7 @@ type InventoryItem = {
     labours: string;
     expenses: string;
     carExpenses: string;
+    priceShunt: string;
+    shants: string;
+    description:string;
   };
