@@ -32,8 +32,7 @@ export default function DashboardLayout({
     router.push('/');
   }
   return (
-    <html lang="en">
-      <body>
+      <>
         <div className="flex flex-col justify-between">
           <div className="flex items-center justify-between h-16 bg-slate-200 px-4">
             <div className="flex items-center gap-x-2">
@@ -77,7 +76,6 @@ export default function DashboardLayout({
           </div>
         </div>
         {children}
-      </body>
-    </html>
+      </>
   );
 }

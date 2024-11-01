@@ -1,9 +1,8 @@
 "use client";
 import HomeCard from "@/components/Home/HomeCard";
 import MainHome from "@/components/Home/MainHome";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import FirebaseConfig from "@/firebase/firbaseConfig";
-import { useState, useEffect } from "react";
 import { ref, onValue } from "firebase/database";
 import Loader from "@/components/Loader";
 import useSearch from "@/lib/Store/SearchStore";
@@ -15,22 +14,26 @@ type InventoryItem = {
 
 type Inventory = Record<string, InventoryItem>;
 
-const useInventory = (): Inventory | null => {
+const useInventory = (): { inventory: Inventory | null; loading: boolean } => {
   const [inventory, setInventory] = useState<Inventory | null>(null);
+  const [loading, setLoading] = useState(true);
   const { db } = FirebaseConfig();
 
   useEffect(() => {
     const inventoryRef = ref(db, "inventory");
-    onValue(inventoryRef, (snapshot) => {
-      setInventory(snapshot.val());
+    const unsubscribe = onValue(inventoryRef, (snapshot) => {
+      const data = snapshot.val();
+      setInventory(data);
+      setLoading(false);
     });
+    return () => unsubscribe();
   }, [db]);
 
-  return inventory;
+  return { inventory, loading };
 };
 
 const HomePage = () => {
-  const inventory = useInventory();
+  const { inventory, loading } = useInventory();
   const { search } = useSearch();
 
   // Filter inventory based on the search term
@@ -40,13 +43,15 @@ const HomePage = () => {
       )
     : Object.entries(inventory || {});
 
-  if (!inventory) {
+  if (loading) {
     return (
       <div className="h-screen w-full flex justify-center items-center">
         <Loader />
       </div>
     );
   }
+
+ 
 
   return (
     <div>
