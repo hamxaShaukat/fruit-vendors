@@ -33,15 +33,14 @@ interface SingleCardListingProps {
   date: string;
   shell: string;
   price: string;
-  wage: string;
-  labours: string;
   expenses: string;
   carExpenses: string;
   priceShunt: string;
   shants: string;
   description: string;
   onDelete: (id: string) => void;
-  onEdit: (id: string, updatedData: Partial<Transaction>) => void;
+  setIsEditing: (state: boolean) => void;
+  setTransactionId: (id: string) => void;
 }
 
 export default function SingleCardListing({
@@ -49,41 +48,35 @@ export default function SingleCardListing({
   date,
   shell,
   price,
-  wage,
-  labours,
   expenses,
   carExpenses,
   priceShunt,
   shants,
   description,
   onDelete,
-  onEdit,
+  setIsEditing,
+  setTransactionId,
 }: SingleCardListingProps) {
   const totalShells = parseInt(shell);
   const totalPrice = parseInt(price);
-  const totalWage = parseInt(wage);
-  const totalLabours = parseInt(labours);
+  
   const totalExpenses = parseInt(expenses);
   const totalCarExpenses = parseInt(carExpenses);
   const totalShants = parseInt(shants);
   const totalPriceShunt = parseInt(priceShunt);
 
   const [isOpen, setIsOpen] = useState(false);
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [itemDate, setitemDate] = React.useState<Date>();
 
   const totalProfit = useMemo(() => {
     return (
       totalShells * totalPrice +
       totalShants * totalPriceShunt -
-      totalWage -
       totalExpenses -
       totalCarExpenses
     );
   }, [
     totalShells,
     totalPrice,
-    totalWage,
     totalExpenses,
     totalCarExpenses,
     totalShants,
@@ -91,7 +84,11 @@ export default function SingleCardListing({
   ]);
 
   const isProfit = totalProfit > 0;
-
+  const handleEditClick = () => {
+    // alert("Edit transaction");
+    setIsEditing(true);
+    setTransactionId(id);
+  };
   const DataRow = ({
     label,
     value,
@@ -128,6 +125,7 @@ export default function SingleCardListing({
             variant="outline"
             size="icon"
             aria-label="Delete"
+            onClick={handleEditClick}
           >
             <Pencil
               className={cn(
@@ -260,20 +258,14 @@ export default function SingleCardListing({
             />
           </TabsContent>
           <TabsContent value="expenses">
-            <DataRow label="Number of labours" value={totalLabours} />
-            <DataRow label="Wages" value={`Rs ${totalWage}`} />
             <DataRow label="Car Expense" value={`Rs ${totalCarExpenses}`} />
             <DataRow label="Other Expenses" value={`Rs ${totalExpenses}`} />
             <DataRow
               label="Total Expenses"
-              value={`Rs ${
-                totalExpenses + totalWage + totalCarExpenses
-              }`}
+              value={`Rs ${totalExpenses  + totalCarExpenses}`}
             />
           </TabsContent>
-          <TabsContent value="description">
-                {description}
-          </TabsContent>
+          <TabsContent value="description">{description}</TabsContent>
         </Tabs>
       </CardContent>
       <Separator
