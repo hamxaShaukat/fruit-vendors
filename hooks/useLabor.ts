@@ -29,7 +29,6 @@ const useLaborById = (laborId: string | null) => {
       laborRef,
       (snapshot) => {
         const data = snapshot.val();
-        console.log("data from Firebase:", data); // Log snapshot data
         if (data) {
           setLabor({ ...data });
         } else {
@@ -49,9 +48,6 @@ const useLaborById = (laborId: string | null) => {
   }, [db, laborId]);
 
   // Debugging state changes
-  useEffect(() => {
-    console.log("Updated labor state:", labor);
-  }, [labor]);
 
   return { labor, loading, error };
 };

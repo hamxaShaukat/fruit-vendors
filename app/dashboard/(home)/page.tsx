@@ -42,7 +42,6 @@ const HomePage = () => {
         itemName.toLowerCase().includes(search.toLowerCase())
       )
     : Object.entries(inventory || {});
-      console.log(filteredInventory)
   if (loading) {
     return (
       <div className="h-screen w-full flex justify-center items-center">

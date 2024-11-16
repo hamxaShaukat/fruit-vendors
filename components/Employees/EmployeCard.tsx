@@ -17,7 +17,6 @@ const EmployeCard = ({ date, id }: EmployeCardProps) => {
   const { setDate } = useDate();
   const { laborId, setLaborId } = useLaborStore();
   const router = useRouter();
-  console.log(laborId);
   const handleNavigation = () => {
     setDate(date);
     setLaborId(id);

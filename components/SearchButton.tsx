@@ -43,7 +43,6 @@ const SearchButton = () => {
         Name: name,
         transactions: {},
       });
-      console.log(response)
       toast({
         variant: "signal",
         title: "Addition successful.",

@@ -132,7 +132,6 @@ const DisplayTable = () => {
     }
   };
   
-  console.log(shipments);
 
   // Render different content based on `shipments` state
   if (!shipments)

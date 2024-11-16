@@ -10,7 +10,6 @@ const Employee = () => {
   const {laborId}=useLaborStore();
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
-  console.log(labors);
   return (
     <>
       <div className="flex items-center justify-center">

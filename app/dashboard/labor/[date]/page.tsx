@@ -25,7 +25,6 @@ const LaborPage = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [isEditing, setIsEditing] = useState(false);
-console.log('first',laborId)
 useEffect(() => {
   const laborRef = ref(db, `labors/${laborId}`);
 
@@ -33,7 +32,6 @@ useEffect(() => {
     laborRef,
     (snapshot) => {
       const data = snapshot.val();
-      console.log("data from Firebase:", data); // Debug fetched data
 
       if (data) {
         setLabor({
@@ -48,7 +46,6 @@ useEffect(() => {
       setLoading(false);
     },
     (error) => {
-      console.error("Error fetching labor data:", error);
       setError("Failed to fetch labor data.");
       setLoading(false);
     }
@@ -59,10 +56,7 @@ useEffect(() => {
 }, [db, laborId]);
 
 
-  // Debugging state changes
-  useEffect(() => {
-    console.log("Updated labor state:", labor);
-  }, [labor]);
+
 
   // const { labor, loading, error } = useLaborById(laborId);
 
@@ -80,7 +74,6 @@ useEffect(() => {
     return <div>No labor data found.</div>;
   }
 
-  console.log("hhhhhi", labor?.employees);
   return (
     <div className="my-5">
       <LaborCards

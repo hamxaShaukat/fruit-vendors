@@ -70,7 +70,6 @@ const LaborCards = ({ employees, desc }: LaborCardsProps) => {
     };
     const { db } = FirebaseConfig();
   
-    console.log("Updated Data to Submit:", updatedLaborData);
   
     // Add your update logic here
     // Assuming Firebase is used:
@@ -130,7 +129,6 @@ const LaborCards = ({ employees, desc }: LaborCardsProps) => {
                 variant="outline"
                 size="icon"
                 aria-label="Edit"
-                // onClick={console.log("first")}
               >
                 <Pencil className="h-4 w-4 text-slate-800 dark:text-slate-400" />
               </Button>
