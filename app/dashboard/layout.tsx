@@ -56,16 +56,16 @@ export default function DashboardLayout({
                   <SheetHeader className="flex flex-row gap-x-2 items-center">
                     <Avatar>
                       <AvatarImage src="/assets/guava.png" />
-                      <AvatarFallback>CN</AvatarFallback>
+                      <AvatarFallback>S.R</AvatarFallback>
                     </Avatar>
                     <SheetTitle className="Capitalize text-lg font-black bg-gradient-to-r from-red-600 to-orange-500 bg-clip-text text-transparent">
                       S.R Farm Manager
                     </SheetTitle>
                   </SheetHeader>
                   <div className="flex flex-col justify-center gap-4 py-4">
-                    {/* <Link href='/hamza' className="cursor-pointer font-semibold text-zinc-600 border rounded-lg p-4 shadow-sm hover:bg-slate-100 transition-all duration-500">
-                        Overview
-                    </Link> */}
+                    <Link href='/dashboard/employees' className="cursor-pointer font-semibold text-zinc-600 border rounded-lg p-4 shadow-sm hover:bg-slate-100 transition-all duration-500">
+                        Employees
+                    </Link>
                     <div  className="cursor-pointer font-semibold text-zinc-600 border rounded-lg p-4 shadow-sm hover:bg-slate-100 transition-all duration-500" onClick={handleLogOut}>
                         Logout
                     </div>
