@@ -18,3 +18,9 @@ type InventoryItem = {
     shants: string;
     description:string;
   };
+
+  type InventoryData  ={
+    Name:string;
+    image:string;
+    transactions: Transaction[];
+  }

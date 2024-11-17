@@ -38,7 +38,7 @@ export default function DashboardLayout({
             <div className="flex items-center gap-x-2">
               <Avatar>
                 <AvatarImage src="/assets/guava.png" />
-                <AvatarFallback>CN</AvatarFallback>
+                <AvatarFallback>S.R</AvatarFallback>
               </Avatar>
               <div className="Capitalize text-xl font-black bg-gradient-to-r from-red-600 to-orange-500 bg-clip-text text-transparent">
                 {" "}
@@ -63,6 +63,9 @@ export default function DashboardLayout({
                     </SheetTitle>
                   </SheetHeader>
                   <div className="flex flex-col justify-center gap-4 py-4">
+                    <Link href='/dashboard' className="cursor-pointer font-semibold text-zinc-600 border rounded-lg p-4 shadow-sm hover:bg-slate-100 transition-all duration-500">
+                        Home
+                    </Link>
                     <Link href='/dashboard/employees' className="cursor-pointer font-semibold text-zinc-600 border rounded-lg p-4 shadow-sm hover:bg-slate-100 transition-all duration-500">
                         Employees
                     </Link>

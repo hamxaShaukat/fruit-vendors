@@ -58,9 +58,6 @@ useEffect(() => {
 
 
 
-  // const { labor, loading, error } = useLaborById(laborId);
-
-  // Debugging logs
 
   if (loading) {
     return <div>Loading...</div>;
