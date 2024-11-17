@@ -16,7 +16,7 @@ const LaborPage = () => {
     id: string;
     date: string;
     description: string;
-    employees: EmployeeField[];
+    Employes: EmployeeField[];
   }
   const { laborId } = useLaborStore();
 
@@ -38,7 +38,7 @@ useEffect(() => {
           id: laborId,
           date: data.date || "", // Use default values if missing
           description: data.description || "",
-          employees: data.employees || [], // Use `employees` from Firebase
+          Employes: data.Employes || [], // Use `employees` from Firebase
         });
       } else {
         setLabor(null); // Handle missing data gracefully
@@ -74,13 +74,14 @@ useEffect(() => {
     return <div>No labor data found.</div>;
   }
 
+  console.log("hhhhhi", labor?.Employes);
   return (
     <div className="my-5">
       <LaborCards
       // setIsEditing={setIsEditing}
         key={labor.id}
         desc={labor.description}
-        employees={labor.employees}
+        employees={labor.Employes}
       />
     </div>
   );

@@ -66,6 +66,9 @@ export default function DashboardLayout({
                     <Link href='/dashboard/employees' className="cursor-pointer font-semibold text-zinc-600 border rounded-lg p-4 shadow-sm hover:bg-slate-100 transition-all duration-500">
                         Employees
                     </Link>
+                    <Link href='/dashboard/totals' className="cursor-pointer font-semibold text-zinc-600 border rounded-lg p-4 shadow-sm hover:bg-slate-100 transition-all duration-500">
+                        Totals
+                    </Link>
                     <div  className="cursor-pointer font-semibold text-zinc-600 border rounded-lg p-4 shadow-sm hover:bg-slate-100 transition-all duration-500" onClick={handleLogOut}>
                         Logout
                     </div>

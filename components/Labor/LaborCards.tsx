@@ -52,6 +52,7 @@ const LaborCards = ({ employees, desc }: LaborCardsProps) => {
       employees.length > 0 ? Math.max(...employees.map((e) => e.id)) + 1 : 1;
     setEmps([...employees, { id: newId, name: "", wage: "" }]);
   };
+  console.log(employees)
   const { laborId } = useLaborStore();
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault(); // Prevent page reload
