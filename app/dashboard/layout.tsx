@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/sheet";
 import { signOutUser } from "@/firebase/authHelpers";
 
-import { AlignJustify } from "lucide-react";
+import { AlignJustify, Calculator, House, LogOut, Users } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -46,7 +46,7 @@ export default function DashboardLayout({
               </div>
             </div>
             <div className="border-2 border-black rounded-sm cursor-pointer">
-              <Sheet>
+              <Sheet >
                 <SheetTrigger asChild>
                   <div>
                     <AlignJustify />
@@ -63,17 +63,17 @@ export default function DashboardLayout({
                     </SheetTitle>
                   </SheetHeader>
                   <div className="flex flex-col justify-center gap-4 py-4">
-                    <Link href='/dashboard' className="cursor-pointer font-semibold text-zinc-600 border rounded-lg p-4 shadow-sm hover:bg-slate-100 transition-all duration-500">
-                        Home
+                    <Link href='/dashboard' className="cursor-pointer flex gap-x-4 font-semibold text-zinc-600 border rounded-lg p-4 shadow-sm hover:bg-slate-100 transition-all duration-500">
+                    <House /> Home
                     </Link>
-                    <Link href='/dashboard/employees' className="cursor-pointer font-semibold text-zinc-600 border rounded-lg p-4 shadow-sm hover:bg-slate-100 transition-all duration-500">
-                        Employees
+                    <Link href='/dashboard/employees' className="flex gap-x-4 cursor-pointer font-semibold text-zinc-600 border rounded-lg p-4 shadow-sm hover:bg-slate-100 transition-all duration-500">
+                    <Users /> Employees
                     </Link>
-                    <Link href='/dashboard/totals' className="cursor-pointer font-semibold text-zinc-600 border rounded-lg p-4 shadow-sm hover:bg-slate-100 transition-all duration-500">
-                        Totals
+                    <Link href='/dashboard/totals' className="flex gap-x-4 cursor-pointer font-semibold text-zinc-600 border rounded-lg p-4 shadow-sm hover:bg-slate-100 transition-all duration-500">
+                    <Calculator />  Totals
                     </Link>
-                    <div  className="cursor-pointer font-semibold text-zinc-600 border rounded-lg p-4 shadow-sm hover:bg-slate-100 transition-all duration-500" onClick={handleLogOut}>
-                        Logout
+                    <div  className="flex gap-x-4 cursor-pointer font-semibold text-zinc-600 border rounded-lg p-4 shadow-sm hover:bg-slate-100 transition-all duration-500" onClick={handleLogOut}>
+                    <LogOut />   Logout
                     </div>
                   </div>
                 </SheetContent>
